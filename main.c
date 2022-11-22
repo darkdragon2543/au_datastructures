@@ -1,4 +1,5 @@
 #include "linkedlistfunctions.h"
+#include "arraysorterfunctions.h"
 
 void linkedlists(int x)
 {
@@ -38,12 +39,12 @@ void linkedlists(int x)
 		{
 		case 1:
 			head = listReverser(head);
-			printf("Here is the reversed list: ");
+			printf("\nHere is the reversed list: ");
 			listPrinter(head);
 			break;
 
 		case 6:
-			printf("Here the list as it currently exists: ");
+			printf("\nHere the list as it currently exists: ");
 			listPrinter(head);
 			break;
 
@@ -52,13 +53,80 @@ void linkedlists(int x)
 			break;
 	
 		default:
-			printf("This is an invalid choice. Please try again.");
+			printf("\nThis is an invalid choice. Please try again.");
 			break;
 		}
 	}
 
 	return;
+}
 
+void arraysorters(int x)
+{
+	printf("\nGood choice!. Let us first create an array. How many numbers would you like to sort?: ");
+	int input_length;
+	scanf("%i" , &input_length);
+
+	printf("\nPlease enter the numbers you would like to sort:\n ");
+	int input[input_length];
+	for (int i = 0; i < input_length; ++i)
+	{
+		scanf("%i" , &input[i]);
+		printf(" ");
+	}
+
+	printf("Here is the array you have created: ");
+	arrayPrinter(input , input_length);
+
+	while (1)
+	{
+		printf("\n\nWhat sorting method would you like to use?\n");
+		printf("\n1) Selection Sort.");
+		printf("\n2) Insertion Sort.");
+		printf("\n3) Quick Sort.");
+		printf("\n4) Print the array.");
+		printf("\n5) Exit.");
+		printf("\n\nEnter your choice: ");
+
+		int c;
+		scanf("%i" , &c);
+
+		switch (c)
+		{
+		case 1:
+			selectionSort(input , input_length);
+			printf("\nHere is the sorted array, using selection sort: ");
+			arrayPrinter(input, input_length);
+			break;
+
+		case 2:
+			insertionSort(input , input_length);
+			printf("\nHere is the sorted array, using insertion sort: ");
+			arrayPrinter(input, input_length);
+			break;
+
+		case 3:
+			quickSort(input , 0 , input_length-1);
+			printf("\nHere is the sorted array, using quick sort: ");
+			arrayPrinter(input, input_length);
+			break;
+
+		case 4:
+			printf("\nHere the array as it currently exists: ");
+			arrayPrinter(input, input_length);
+			break;
+
+		case 5:
+			return;
+			break;
+	
+		default:
+			printf("\nThis is an invalid choice. Please try again.");
+			break;
+		}
+	}
+
+	return;
 }
 
 int main()
@@ -66,8 +134,9 @@ int main()
 	printf("DATA STRUCTURES COURSE - SHAUNAK SAWANT");
 	printf("\n 1) Linked List Based Programs");
 	printf("\n 2) Array Sorting Programs");
-	printf("\n 3) Heap Based Programs");
-	printf("\nWhat would you like to utilise? (1/2/3) : ");
+	printf("\n 3) Tree Based Programs");
+	printf("\n 4) Heap Based Programs");
+	printf("\nWhat would you like to utilise? (1/2/3/4) : ");
 
 	int choice;
 	scanf("%i" , &choice);
@@ -77,9 +146,13 @@ int main()
 	case 1:
 		linkedlists(0);
 		break;
+
+	case 2:
+		arraysorters(0);
+		break;
 	
 	default:
-		printf("This is an invalid choice. Please try again.");
+		printf("\nThis is an invalid choice. Please try again.");
 		break;
 	}
 

@@ -16,4 +16,16 @@ void listPrinter(node* node_address);
 
 node* listReverser(node* head);
 
+void listHalfPrinter(node* node_address);
+
+node* listSelectionSort(node* head);
+
+node* listInsertionSort(node* head);
+
+node* LLpartition(node* nodeFrom, node* nodeTo);
+
+node* listQuickSorter(node* nodeFrom , node* nodeTo);
+
+node* listQuickSort(node* head);
+
 #endif

@@ -1,0 +1,150 @@
+//#include "linkedlistfunctions.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node
+{
+	int data;
+	struct Node* next;
+}node;
+
+node* listCreator(int n[] , int array_length)
+{
+	// create the head
+	node* now = NULL;
+	now = (node*) malloc(sizeof(node));
+	node* head = now;
+
+	// create the moving pointer
+	node* next = NULL;
+
+	// create the linked list
+	for(int i = 0 ;  i < array_length - 1; i++)
+	{
+		next = (node*) malloc(sizeof(node)); // creates new node
+		now->data = n[i]; // stores data in previous node
+		now->next = next; // stores pointer to new node, in the previous node
+
+		now = next; // moves ahead
+	}
+
+	// sets tail
+	now->data = n[array_length-1];
+	now->next = NULL;
+
+	// returns head
+	return head;
+}
+
+void listPrinter(node* node_address)
+{
+	while(node_address != NULL)
+	{
+		printf("%d " , node_address->data);
+		node_address = node_address->next;
+	}
+}
+
+node* LLpartition(node* nodeFrom, node* nodeTo)
+{
+	node* pivot = nodeFrom->next;
+	node* loHead = NULL;
+	node* loTail = NULL;
+	node* hiHead = NULL;
+	node* hiTail = NULL;
+	node* next = NULL;
+
+	for (node* i = pivot->next ; i != nodeTo ; i = next)
+	{
+		next = i->next;
+
+		if (i->data < pivot->data)
+		{
+			if(loHead==NULL)
+				loTail = i;
+			i->next = loHead;
+			loHead = i;
+		}
+		else
+		{
+			if(hiHead==NULL)
+				hiTail = i;
+			i->next = hiHead;
+			hiHead = i;
+		}
+	}
+	
+	if(loHead==NULL)
+		nodeFrom->next = pivot;
+	else
+	{
+		nodeFrom->next = loHead;
+		loTail->next = pivot;
+	}
+	
+	if(hiHead==NULL)
+		pivot->next = nodeTo;
+	else
+	{
+		pivot->next = hiHead;
+		hiTail->next = nodeTo;
+	}
+	
+	return pivot;
+}
+
+node* listQuickSorter(node* nodeFrom , node* nodeTo)
+{
+	if(nodeFrom->next != nodeTo)
+	{
+		node* pivot = LLpartition(nodeFrom,nodeTo);
+
+		listQuickSorter(nodeFrom, pivot);
+		listQuickSorter(pivot , nodeTo);
+	}	
+}
+
+node* listQuickSort(node* head)
+{
+	node dummyNode1;
+	dummyNode1.next = head;
+
+	node dummyNode2;
+	dummyNode2.next = NULL;
+	dummyNode2.data = 9999;
+
+	node* tail = head;
+	while(tail->next != NULL)
+		tail = tail->next;
+
+	node* nodeFrom = &dummyNode1;
+	node* nodeTo = &dummyNode2;
+
+	tail->next = nodeTo;
+
+	listQuickSorter(nodeFrom , nodeTo);
+
+	tail = nodeFrom;
+	while(tail->next != nodeTo)
+		tail = tail->next;
+
+	tail->next = NULL;
+
+	return nodeFrom->next;
+}
+
+int main()
+{
+	int l[] = {5,4,2,1,3,6,9,8,7,11,13,14,10,12};
+	int length = 14;
+
+	node* head = listCreator(l,length);
+	listPrinter(head);
+
+	printf("\n");
+
+	head = listQuickSort(head);
+	listPrinter(head);
+
+	return 0;
+}

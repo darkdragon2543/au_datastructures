@@ -28,8 +28,9 @@ void linkedlists(int x)
 		printf("\n3) Sort the linked list using selection sort.");
 		printf("\n4) Sort the linked list using insertion sort.");
 		printf("\n5) Sort the linked list using quick sort.");
-		printf("\n6) Print the linked list.");
-		printf("\n7) Exit.");
+		printf("\n6) Print the first half of the linked list.");
+		printf("\n7) Print the linked list.");
+		printf("\n8) Exit.");
 		printf("\n\nEnter your choice: ");
 
 		int c;
@@ -43,12 +44,35 @@ void linkedlists(int x)
 			listPrinter(head);
 			break;
 
+		case 3:
+			head = listSelectionSort(head);
+			printf("\nHere is the sorted list, using selection sort: ");
+			listPrinter(head);
+			break;
+
+		case 4:
+			head = listInsertionSort(head);
+			printf("\nHere is the sorted list, using insertion sort: ");
+			listPrinter(head);
+			break;
+
+		case 5:
+			head = listQuickSort(head);
+			printf("\nHere is the sorted list, using quick sort: ");
+			listPrinter(head);
+			break;
+
 		case 6:
+			printf("\nHere is the first half of the linked list: ");
+			listHalfPrinter(head);
+			break;
+
+		case 7:
 			printf("\nHere the list as it currently exists: ");
 			listPrinter(head);
 			break;
 
-		case 7:
+		case 8:
 			return;
 			break;
 	

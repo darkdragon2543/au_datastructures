@@ -28,4 +28,6 @@ node* listQuickSorter(node* nodeFrom , node* nodeTo);
 
 node* listQuickSort(node* head);
 
+node* listChunkReverser(node* head, int k);
+
 #endif

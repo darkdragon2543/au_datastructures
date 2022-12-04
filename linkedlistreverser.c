@@ -3,10 +3,9 @@
 node* listReverser(node* head)
 {
 	// make the head into the tail
-	node* current = head->next;
-	node* previous = head;
+	node* current = head;
+	node* previous = NULL;
 	node* following = NULL;
-	head->next = NULL;
 
 	// reverse the list
 	while(current != NULL)

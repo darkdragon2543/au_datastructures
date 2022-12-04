@@ -44,6 +44,16 @@ void linkedlists(int x)
 			listPrinter(head);
 			break;
 
+		case 2:
+			; // blank statement to avoid error throw
+			int chunk = 0;
+			printf("Good choice! What is the chunk size to be reversed?: ");
+			scanf("%d",&chunk);
+			head = listChunkReverser(head,chunk);
+			printf("Here is the %d node chunk reversed list: ");
+			listPrinter(head);
+			break;
+
 		case 3:
 			head = listSelectionSort(head);
 			printf("\nHere is the sorted list, using selection sort: ");

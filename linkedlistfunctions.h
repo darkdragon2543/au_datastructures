@@ -30,4 +30,16 @@ node* listQuickSort(node* head);
 
 node* listChunkReverser(node* head, int k);
 
+typedef struct Skipnode
+{
+	int val;
+	struct Skipnode* next;
+	struct Skipnode* next2;
+
+}skipnode;
+
+skipnode* skipListCreator(int n[] , int array_length);
+
+void skipListPrinter(skipnode* node_address);
+
 #endif

@@ -31,7 +31,8 @@ void linkedlists(int x)
 		printf("\n5) Sort the linked list using quick sort.");
 		printf("\n6) Print the first half of the linked list.");
 		printf("\n7) Print the linked list.");
-		printf("\n8) Exit.");
+		printf("\n8) Create a basic skip-list with the original array, and print it.");
+		printf("\n9) Exit.");
 		printf("\n\nEnter your choice: ");
 
 		int c;
@@ -84,6 +85,13 @@ void linkedlists(int x)
 			break;
 
 		case 8:
+			; // blank statement to avoid error throw
+			skipnode* skiphead = skipListCreator(input, input_length);
+			printf("\nHere is the skip list, with a two node lookahead: ");
+			skipListPrinter(skiphead);
+			break;
+
+		case 9:
 			return;
 			break;
 	

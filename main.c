@@ -1,5 +1,6 @@
 #include "linkedlistfunctions.h"
 #include "arraysorterfunctions.h"
+#include "treefunctions.h"
 
 void linkedlists(int x)
 {
@@ -163,14 +164,114 @@ void arraysorters(int x)
 	return;
 }
 
+void treestuff(int x)
+{
+	printf("\nGood choice!. Let us first look at the data we are working with. How many numbers do you have?: ");
+	int input_length;
+	scanf("%i" , &input_length);
+
+	printf("\nPlease enter the numbers:\n ");
+	int input[input_length];
+	for (int i = 0; i < input_length; ++i)
+	{
+		scanf("%i" , &input[i]);
+		printf(" ");
+	}
+
+	treenode* root = NULL;
+
+	printf("Here are the numbers you are working with: ");
+	arrayPrinter(input , input_length);
+
+	int* input_pointer = &input[0];
+
+	while (1)
+	{
+		printf("\n\nWhat would you like to do now?\n");
+		printf("\n1) Create a Binary Search Tree.");
+		printf("\n2) Sort data using a heap, and heapsort.");
+		printf("\n3) Create an AVL tree.");
+		printf("\n4) Exit.");
+		printf("\n\nEnter your choice: ");
+
+		int c;
+		scanf("%i" , &c);
+
+		switch (c)
+		{
+		case 1:
+		{
+			root = arrayToBST(input_pointer, input_length);
+			printf("\nHere is your Binary Search Tree:\n");
+			printTree2D(root);
+
+			while(1)
+			{
+				printf("\n\nWhat would you like to do now?:");
+				printf("\n1) Delete an element.");
+				printf("\n2) Print the tree.");
+				printf("\n3) Exit.");
+				printf("\n\nEnter your choice: ");
+				scanf("%i" , &c);
+
+				switch(c)
+				{
+					case 1:
+						; // blank statement to avoid error throw
+						int k = 0;
+						printf("Good choice! What is the node to be deleted?: ");
+						scanf("%d",&k);
+						root = deleteNodeBST(root, k);
+
+						printf("Here is the edited list: ");
+						printTree2D(root);
+
+						break;
+
+					case 2:
+						printf("\nHere is your Binary Search Tree:\n");
+						printTree2D(root);
+						break;
+
+					case 3:
+						return;
+						break;
+
+					default:
+						printf("\nThis is an invalid choice. Please try again.");
+						break;
+				}
+			}
+			
+			break;
+		}
+
+		case 2:
+			heapSort(input , input_length);
+			printf("\n\nHere is the list, sorted with heapsort: ");
+			arrayPrinter(input , input_length);
+			break;
+
+		case 4:
+			return;
+			break;
+	
+		default:
+			printf("\nThis is an invalid choice. Please try again.");
+			break;
+		}
+	}
+
+	return;
+}
+
 int main()
 {
 	printf("DATA STRUCTURES COURSE - SHAUNAK SAWANT");
 	printf("\n 1) Linked List Based Programs");
 	printf("\n 2) Array Sorting Programs");
 	printf("\n 3) Tree Based Programs");
-	printf("\n 4) Heap Based Programs");
-	printf("\nWhat would you like to utilise? (1/2/3/4) : ");
+	printf("\nWhat would you like to utilise? (1/2/3) : ");
 
 	int choice;
 	scanf("%i" , &choice);
@@ -184,6 +285,9 @@ int main()
 	case 2:
 		arraysorters(0);
 		break;
+
+	case 3:
+		treestuff(0);
 	
 	default:
 		printf("\nThis is an invalid choice. Please try again.");
